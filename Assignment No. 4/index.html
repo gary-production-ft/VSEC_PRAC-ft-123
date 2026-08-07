@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Attendance Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Attendance Management System</h1>
+
+        <input type="text" id="name" placeholder="Enter Student Name">
+
+        <button onclick="addStudent()">Add Student</button>
+
+        <table id="table">
+
+            <tr>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+
+        </table>
+
+        <div class="result">
+            <h3>Total Present : <span id="present">0</span></h3>
+            <h3>Total Absent : <span id="absent">0</span></h3>
+            <h3>Attendance Percentage : <span id="percentage">0</span>%</h3>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
