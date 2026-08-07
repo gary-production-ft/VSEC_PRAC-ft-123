@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Marks System</title>
+
+    <link rel="stylesheet" href="marksheet.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Student Marks Record</h1>
+
+    <div class="form-box">
+
+        <label>Student Name</label>
+        <input type="text" id="name" placeholder="Enter Name">
+
+        <label>Data Structure</label>
+        <input type="number" id="ds" placeholder="Enter Marks">
+
+        <label>Discrete Maths</label>
+        <input type="number" id="dm" placeholder="Enter Marks">
+
+        <label>Sensors and Actuators</label>
+        <input type="number" id="sa" placeholder="Enter Marks">
+
+        <label>Infrastructure Planning</label>
+        <input type="number" id="ip" placeholder="Enter Marks">
+
+        <button onclick="addStudent()">Add Record</button>
+
+        <button onclick="showTopper()">Show Topper</button>
+
+    </div>
+
+
+    <h2>All Student Records</h2>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>DS</th>
+                <th>DM</th>
+                <th>Sensors</th>
+                <th>Infrastructure</th>
+                <th>Average</th>
+            </tr>
+        </thead>
+
+        <tbody id="recordTable">
+
+        </tbody>
+
+    </table>
+
+
+    <h2 id="topper"></h2>
+
+
+</div>
+
+
+<script src="marksheet.js"></script>
+
+</body>
+</html>
