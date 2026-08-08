@@ -1,0 +1,217 @@
+================================================================================
+                         GIT COMMANDS CHEAT SHEET & THEORY GUIDE
+================================================================================
+
+Git manages code changes across three primary zones:
+1. Working Directory - Actual files on your machine
+2. Staging Area     - Draft changes prepared for saving
+3. Repository       - Permanent snapshot history (local and remote)
+
+--------------------------------------------------------------------------------
+1. git init
+--------------------------------------------------------------------------------
+THEORY:
+Initializes a brand new, empty local Git repository in your current directory. 
+It creates a hidden .git directory containing all the tracking metadata, 
+objects, and commit history structure Git needs to record changes.
+
+EXAMPLE:
+  mkdir my-app
+  cd my-app
+  git init
+  # Output: Initialized empty Git repository in /path/to/my-app/.git/
+
+--------------------------------------------------------------------------------
+2. git clone
+--------------------------------------------------------------------------------
+THEORY:
+Downloads an existing remote repository (from GitHub, GitLab, Bitbucket, etc.) 
+to your local machine. It creates a local directory, copies all project files, 
+downloads the entire commit history, and automatically configures a link named 
+'origin' pointing back to the remote source.
+
+EXAMPLE:
+  git clone https://github.com/user/repository-name.git
+  cd repository-name
+
+--------------------------------------------------------------------------------
+3. git status
+--------------------------------------------------------------------------------
+THEORY:
+Inspects the current state of your working directory and staging area. It shows 
+which files are untracked (new files Git isn't watching yet), modified (edited 
+but not staged), or staged (prepared for the next commit), as well as which 
+branch you are currently on.
+
+EXAMPLE:
+  git status
+
+--------------------------------------------------------------------------------
+4. git add
+--------------------------------------------------------------------------------
+THEORY:
+Moves changes from your working directory into the Staging Area (also called 
+the index). This lets you prepare and select specific changes before permanently 
+committing them to history.
+
+EXAMPLE:
+  # Stage a single file
+  git add index.html
+
+  # Stage all new, modified, and deleted files in the project
+  git add .
+
+--------------------------------------------------------------------------------
+5. git commit
+--------------------------------------------------------------------------------
+THEORY:
+Takes a snapshot of all files currently in the staging area and permanently 
+saves that snapshot to your local Git repository log. Every commit gets a 
+unique SHA-1 hash ID and requires a message describing what was changed.
+
+EXAMPLE:
+  git commit -m "Add responsive navigation header"
+
+--------------------------------------------------------------------------------
+6. git push
+--------------------------------------------------------------------------------
+THEORY:
+Uploads your local commits from your local machine to a remote repository 
+(like GitHub). It merges your local commit history into the target branch on 
+the remote server so collaborators can see your updates.
+
+EXAMPLE:
+  # Pushes local 'main' branch commits to the 'origin' remote repository
+  git push origin main
+
+--------------------------------------------------------------------------------
+7. git pull
+--------------------------------------------------------------------------------
+THEORY:
+Downloads the latest commits from a remote repository branch and immediately 
+merges them into your current local working branch. Under the hood, 'git pull' 
+is a combination of two operations: 'git fetch' (downloading data) + 'git merge' 
+(incorporating changes).
+
+EXAMPLE:
+  # Pulls and merges updates from the remote 'main' branch into your active branch
+  git pull origin main
+
+--------------------------------------------------------------------------------
+8. git branch
+--------------------------------------------------------------------------------
+THEORY:
+Manages independent lines of development. Under the hood, a branch in Git is 
+simply a lightweight, movable pointer to a specific commit. Creating a branch 
+allows you to build features or fix bugs in isolation without disturbing the 
+main codebase.
+
+EXAMPLE:
+  # List all local branches (current branch marked with *)
+  git branch
+
+  # Create a new branch
+  git branch feature-login
+
+  # Delete a branch locally (after merging)
+  git branch -d feature-login
+
+--------------------------------------------------------------------------------
+9. git checkout / git switch
+--------------------------------------------------------------------------------
+THEORY:
+Navigates between branches or inspects older commits. When you checkout a branch, 
+Git updates the files in your working directory to match the snapshot of that 
+branch's latest commit and moves the HEAD pointer to it.
+(Note: 'git switch' is the modern command dedicated to branch switching).
+
+EXAMPLE:
+  # Switch to an existing branch
+  git checkout feature-login
+  # OR using modern alternative:
+  git switch feature-login
+
+  # Shortcut: Create AND switch to a new branch in one step
+  git checkout -b feature-login
+  # OR:
+  git switch -c feature-login
+
+--------------------------------------------------------------------------------
+10. git merge
+--------------------------------------------------------------------------------
+THEORY:
+Combines the commit histories of two different branches into one. You switch 
+to your target branch (e.g., main) and merge another branch (e.g., feature-login) 
+into it. If both branches edited the same lines of code, Git will pause and ask 
+you to resolve a merge conflict.
+
+EXAMPLE:
+  # 1. Switch to the main branch
+  git switch main
+
+  # 2. Merge feature branch into main
+  git merge feature-login
+
+--------------------------------------------------------------------------------
+11. git stash
+--------------------------------------------------------------------------------
+THEORY:
+Temporarily stores ("stashes") your modified or staged changes without making 
+a commit. This gives you a clean working directory so you can switch branches 
+quickly to work on urgent fixes, then restore your draft work later.
+
+EXAMPLE:
+  # Save local uncommitted work to stash
+  git stash
+
+  # Re-apply stashed changes and remove them from stash list
+  git stash pop
+
+--------------------------------------------------------------------------------
+12. git log
+--------------------------------------------------------------------------------
+THEORY:
+Displays the commit history of the current branch. It lists commits in reverse 
+chronological order, showing each commit's unique SHA hash ID, author, date, 
+and commit message.
+
+EXAMPLE:
+  # Show full commit history
+  git log
+
+  # Compact view showing each commit on a single line
+  git log --oneline
+
+--------------------------------------------------------------------------------
+13. git reset
+--------------------------------------------------------------------------------
+THEORY:
+Undoes local changes or moves the HEAD pointer back to a previous commit in 
+history. Depending on the flag used, it can keep your file edits (--soft or 
+default) or completely erase all uncommitted edits (--hard).
+
+EXAMPLE:
+  # Unstage files added with 'git add', keeping changes in working directory
+  git reset
+
+  # Discard last commit but keep file changes in staging area
+  git reset --soft HEAD~1
+
+  # Permanently wipe out last commit AND all uncommitted work
+  git reset --hard HEAD~1
+
+--------------------------------------------------------------------------------
+14. git restore
+--------------------------------------------------------------------------------
+THEORY:
+Discards uncommitted changes in your working directory or unstages files from 
+the staging area without affecting repository commit history. It is designed as 
+a safer alternative to 'git checkout' for reverting files.
+
+EXAMPLE:
+  # Discard local changes in a specific file
+  git restore index.html
+
+  # Remove a file from the staging area (unstage it)
+  git restore --staged index.html
+================================================================================
