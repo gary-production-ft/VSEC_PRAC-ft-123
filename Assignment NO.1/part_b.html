@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Color Box Animation</title>
+    <style>
+
+        * {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial;
+}
+
+.container {
+    position: relative;
+    width: 800px;
+    height: 400px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hide checkbox */
+#animate {
+    display: none;
+}
+
+/* Four boxes */
+
+.box-container {
+    width: 200px;
+    height: 200px;
+
+    display: grid;
+    grid-template-columns: 100px 100px;
+    grid-template-rows: 100px 100px;
+
+    cursor: pointer;
+
+    z-index: 2;
+}
+
+/* Common box properties */
+
+.box {
+    width: 100px;
+    height: 100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: bold;
+
+    transition: 1s;
+}
+
+/* Box colors */
+
+.red {
+    background: red;
+}
+
+.green {
+    background: green;
+}
+
+.yellow {
+    background: yellow;
+}
+
+.blue {
+    background: blue;
+}
+
+/* Text */
+
+.hidden-text {
+    position: absolute;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transition: 1s;
+}
+
+/* When checkbox is clicked */
+
+/* Move red and yellow left */
+
+#animate:checked ~ .box-container .red,
+#animate:checked ~ .box-container .yellow {
+    transform: translateX(-120px) rotate(90deg);
+}
+
+/* Move green and blue right */
+
+#animate:checked ~ .box-container .green,
+#animate:checked ~ .box-container .blue {
+    transform: translateX(120px) rotate(90deg);
+}
+
+/* Show text */
+
+#animate:checked ~ .hidden-text {
+    opacity: 1;
+}
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <input type="checkbox" id="animate">
+
+        <label for="animate" class="box-container">
+
+            <div class="box red">RED</div>
+            <div class="box green">GREEN</div>
+            <div class="box yellow">YELLOW</div>
+            <div class="box blue">BLUE</div>
+
+        </label>
+
+        <div class="hidden-text">
+            <h2>Welcome ! </h2>
+            <p>1B : Color Box Animation </p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -180,16 +180,3 @@ input[type=password]{
 
 }
 
-@keyframes popup{
-
-    from{
-        transform:scale(.8);
-        opacity:0;
-    }
-
-    to{
-        transform:scale(1);
-        opacity:1;
-    }
-
-}
