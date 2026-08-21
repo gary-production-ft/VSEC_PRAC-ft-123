@@ -1,0 +1,191 @@
+Query:
+db.customers.insertOne({
+  name: "Aarav Sharma",
+  city: "Mumbai",
+  age: 28,
+  balance: 45000,
+  tags: ["premium", "tech"],
+  status: "active"
+});
+
+Result :
+{
+  acknowledged: true,
+  insertedId: ObjectId('6a8894e56403226ad6fe6f3b')
+}
+
+
+QUery : 
+db.customers.insertMany([
+  { name: "Priya Patel", city: "Ahmedabad", age: 34, balance: 12000, tags: ["retail"], status: "active" },
+  { name: "Amit Kumar", city: "Delhi", age: 22, balance: 85000, tags: ["premium"], status: "inactive" },
+  { name: "Anjali Menon", city: "Bengaluru", age: 40, balance: 3500, tags: ["student"], status: "active" },
+  { name: "Rajesh Singh", city: "Patna", age: 19, balance: 15000, tags: ["student"], status: "active" }
+]);
+
+Result : 
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a889543cd1ff6558a75e314'),
+    '1': ObjectId('6a889543cd1ff6558a75e315'),
+    '2': ObjectId('6a889543cd1ff6558a75e316'),
+    '3': ObjectId('6a889543cd1ff6558a75e317')
+  }
+}
+
+QUery:
+// Find customers whose city is exactly "Mumbai"
+db.customers.find({ city: { $eq: "Mumbai" } });
+
+Result : 
+{
+  _id: ObjectId('6a8894e56403226ad6fe6f3b'),
+  name: 'Aarav Sharma',
+  city: 'Mumbai',
+  age: NumberInt('28'),
+  balance: NumberInt('45000'),
+  tags: [
+    'premium',
+    'tech'
+  ],
+  status: 'active'
+}
+
+Query:
+// Find customers whose age is 25 or below
+db.customers.find({ age: { $lte: 25 } });
+
+Result:
+{
+  _id: ObjectId('6a889543cd1ff6558a75e315'),
+  name: 'Amit Kumar',
+  city: 'Delhi',
+  age: NumberInt('22'),
+  balance: NumberInt('85000'),
+  tags: [
+    'premium'
+  ],
+  status: 'inactive'
+}
+
+{
+  _id: ObjectId('6a889543cd1ff6558a75e317'),
+  name: 'Rajesh Singh',
+  city: 'Patna',
+  age: NumberInt('19'),
+  balance: NumberInt('15000'),
+  tags: [
+    'student'
+  ],
+  status: 'active'
+}
+
+Query:
+// Find customers who live in either "Delhi" or "Bengaluru"
+db.customers.find({ city: { $in: ["Delhi", "Bengaluru"] } });
+
+Result:
+{
+  _id: ObjectId('6a889543cd1ff6558a75e315'),
+  name: 'Amit Kumar',
+  city: 'Delhi',
+  age: NumberInt('22'),
+  balance: NumberInt('85000'),
+  tags: [
+    'premium'
+  ],
+  status: 'inactive'
+}
+
+{
+  _id: ObjectId('6a889543cd1ff6558a75e316'),
+  name: 'Anjali Menon',
+  city: 'Bengaluru',
+  age: NumberInt('40'),
+  balance: NumberInt('3500'),
+  tags: [
+    'student'
+  ],
+  status: 'active'
+}
+
+Query:
+// Find customers who are "active" AND have a balance over ₹20,000
+db.customers.find({
+  $and: [
+    { status: "active" },
+    { balance: { $gt: 20000 } }
+  ]
+});
+
+Result:
+{
+  _id: ObjectId('6a8894e56403226ad6fe6f3b'),
+  name: 'Aarav Sharma',
+  city: 'Mumbai',
+  age: NumberInt('28'),
+  balance: NumberInt('45000'),
+  tags: [
+    'premium',
+    'tech'
+  ],
+  status: 'active'
+}
+
+Query : 
+// Increase "Aarav Sharma's" balance by ₹5,000 ($inc increments a number)
+db.customers.updateOne(
+  { name: "Aarav Sharma" },
+  { $inc: { balance: 5000 } }
+);
+
+Result:
+ {
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: NumberInt('1'),
+  modifiedCount: NumberInt('1'),
+  upsertedCount: NumberInt('0')
+}
+
+Query:
+// Set status to "low_balance" for everyone with a balance below ₹5,000
+db.customers.updateMany(
+  { balance: { $lt: 5000 } },
+  { $set: { status: "low_balance" } }
+);
+
+Result:
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: NumberInt('8'),
+  modifiedCount: NumberInt('1'),
+  upsertedCount: NumberInt('0')
+}
+
+Query:
+// Remove "Rajesh Singh" from the collection
+db.customers.deleteOne({ name: "Rajesh Singh" });
+
+Result:
+{
+  acknowledged: true,
+  deletedCount: NumberInt('1')
+}
+
+Query : 
+// Delete all "inactive" customers who live in "Delhi"
+db.customers.deleteMany({
+  $and: [
+    { status: "inactive" },
+    { city: "Delhi" }
+  ]
+});
+
+Result : 
+{
+  acknowledged: true,
+  deletedCount: NumberInt('10')
+}
