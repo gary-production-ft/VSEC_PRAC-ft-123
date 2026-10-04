@@ -1,0 +1,168 @@
+.navbar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  padding: 2rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+.brandName {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f0f0f0;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.brandSub {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--color-accent-red);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── Menu button ── */
+.menuBtn {
+  background: none;
+  border: 1px solid rgba(240,240,240,0.2);
+  color: #f0f0f0;
+  cursor: pointer;
+  padding: 0.6rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  border-radius: 2px;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.menuBtn:hover {
+  border-color: rgba(240,240,240,0.6);
+  background: rgba(240,240,240,0.05);
+}
+.menuBtnOpen {
+  border-color: var(--color-accent-red);
+}
+
+.burger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.burger span {
+  display: block;
+  width: 18px;
+  height: 1px;
+  background: #f0f0f0;
+  transition: transform 0.3s ease;
+}
+.menuBtnOpen .burger span:first-child { transform: rotate(45deg) translate(4px, 4px); }
+.menuBtnOpen .burger span:last-child  { transform: rotate(-45deg) translate(4px, -4px); }
+
+.menuLabel {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── Fullscreen overlay ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #0a0a0a;
+  z-index: 900;
+  display: flex;
+  align-items: stretch;
+  clip-path: inset(0 0 100% 0);
+}
+
+.overlayContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 8rem 10vw 4rem;
+  justify-content: space-between;
+}
+
+.overlayMeta {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(240,240,240,0.08);
+  padding-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+.overlayMeta span {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(240,240,240,0.3);
+}
+
+/* ── Menu links ── */
+.menuNav {
+  display: flex;
+  flex-direction: column;
+}
+
+.menuLink {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  text-decoration: none;
+  color: #f0f0f0;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(240,240,240,0.08);
+  opacity: 0; /* initial — animated by GSAP */
+  transition: color 0.3s ease;
+  will-change: transform;
+}
+.menuLink:hover { color: var(--color-accent-red); }
+.menuLink:hover .linkArrow { transform: translate(4px, -4px); }
+
+.linkNum {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: rgba(240,240,240,0.3);
+  letter-spacing: 0.05em;
+  width: 2.5rem;
+}
+
+.linkText {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 7rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.linkArrow {
+  font-size: 1.5rem;
+  margin-left: auto;
+  opacity: 0.3;
+  transition: transform 0.3s ease;
+}
+
+/* ── Overlay footer ── */
+.overlayFooter {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(240,240,240,0.08);
+}
+.overlayFooter span {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(240,240,240,0.25);
+}

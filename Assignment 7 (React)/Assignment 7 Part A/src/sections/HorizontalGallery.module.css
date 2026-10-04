@@ -1,0 +1,139 @@
+.section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: transparent;
+  z-index: 1;
+}
+
+.sectionLabel {
+  position: absolute;
+  top: 2.5rem;
+  left: 5vw;
+  right: 5vw;
+  display: flex;
+  justify-content: space-between;
+  z-index: 20;
+}
+.sectionLabel span {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(240,240,240,0.35);
+}
+
+/* ── Track ── */
+.track {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding: 0 8vw;
+  gap: 4vw;
+  width: max-content;
+  will-change: transform;
+}
+
+/* ── Intro text item ── */
+.introItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 6vw;
+  border-right: 1px solid rgba(240,240,240,0.1);
+  gap: 2rem;
+  height: 60vh;
+  min-width: 25vw;
+}
+.introTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 6rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: #f0f0f0;
+}
+.introSub {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(240,240,240,0.3);
+  line-height: 1.8;
+}
+
+/* ── Artwork items ── */
+.item {
+  position: relative;
+  width: clamp(220px, 25vw, 380px);
+  height: 55vh;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.itemTall {
+  height: 70vh;
+  margin-top: -5vh;
+}
+
+.imgWrapper {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+.imgInner {
+  position: absolute;
+  inset: -30px 0;
+  will-change: transform;
+}
+.imgInner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(70%) contrast(1.05);
+  transition: filter 0.6s ease;
+}
+
+.item:hover .imgInner img {
+  filter: grayscale(0%) contrast(1);
+}
+
+.imgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.5) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+}
+.artNum {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: rgba(240,240,240,0.5);
+  letter-spacing: 0.1em;
+}
+
+/* ── Item metadata below image ── */
+.itemMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.itemTitle {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(240,240,240,0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.itemYear {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: rgba(240,240,240,0.3);
+  letter-spacing: 0.08em;
+}

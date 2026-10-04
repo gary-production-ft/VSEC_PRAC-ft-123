@@ -1,0 +1,129 @@
+.section {
+  position: relative;
+  width: 100vw;
+  padding: 8vh 6vw 10vh;
+  background: transparent;
+  z-index: 1;
+  color: #f0f0f0;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(240,240,240,0.15);
+  margin-bottom: 6vh;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 6vw;
+  align-items: start;
+}
+
+/* ── Left column ── */
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.catalogNumber {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 8vw, 10rem);
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(240,240,240,0.15);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.metaStack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(240,240,240,0.08);
+}
+
+.metaKey {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(240,240,240,0.3);
+}
+
+.metaVal {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: rgba(240,240,240,0.8);
+  font-weight: 500;
+}
+
+/* ── Right column ── */
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 7rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #f0f0f0;
+}
+.heading em {
+  font-style: italic;
+  color: var(--color-accent-red);
+}
+
+.body {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  line-height: 1.7;
+  color: rgba(240,240,240,0.55);
+  max-width: 55ch;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-decoration: none;
+  color: #f0f0f0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 1rem 1.8rem;
+  border: 1px solid rgba(240,240,240,0.2);
+  width: fit-content;
+  transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+}
+.cta:hover {
+  border-color: var(--color-accent-red);
+  color: var(--color-accent-red);
+  background: rgba(255,51,51,0.05);
+}
+.ctaArrow {
+  transition: transform 0.3s ease;
+}
+.cta:hover .ctaArrow { transform: translate(3px, -3px); }
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}

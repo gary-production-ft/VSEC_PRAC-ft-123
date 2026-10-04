@@ -1,0 +1,19 @@
+.container {
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  padding: 2vh 0;
+}
+
+.text {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 14vw, 16rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  will-change: transform;
+  display: block;
+}

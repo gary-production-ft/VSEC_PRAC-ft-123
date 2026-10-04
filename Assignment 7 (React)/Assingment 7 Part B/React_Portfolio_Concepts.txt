@@ -1,0 +1,454 @@
+REACT ROUTER AND REACT CONCEPTS
+================================
+
+This file explains how React Router is used in the portfolio and the main
+React concepts used in the project.
+
+
+1. HOW REACT ROUTER IS USED
+---------------------------
+
+React Router allows the React app to display different components for
+different URLs without refreshing the whole browser page.
+
+The router is enabled in src/main.jsx:
+
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+
+
+2. BrowserRouter
+----------------
+
+BrowserRouter enables routing in the React application.
+
+It watches the browser URL and allows React to change the displayed page.
+
+Without BrowserRouter, components such as Routes, Route, Link, and NavLink
+will not work.
+
+
+3. The Routes COMPONENT
+-----------------------
+
+Routes contains all the individual routes in the application:
+
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/projects" element={<Projects />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+
+Routes checks the current URL and chooses the matching route.
+
+Examples:
+
+    /             displays the Home component
+    /about       displays the About component
+    /projects    displays the Projects component
+
+
+4. The Route COMPONENT
+----------------------
+
+A Route connects a URL path to a React component:
+
+    <Route path="/about" element={<About />} />
+
+This means:
+
+    When the URL is /about, render the About component.
+
+Another example:
+
+    <Route path="/projects" element={<Projects />} />
+
+This means:
+
+    When the URL is /projects, render the Projects component.
+
+
+5. The WILDCARD ROUTE
+---------------------
+
+This route handles URLs that do not exist:
+
+    <Route path="*" element={<NotFound />} />
+
+The asterisk (*) means "anything else."
+
+For example, if a user visits /contact and there is no /contact route,
+React displays the NotFound component.
+
+
+REACT CONCEPTS USED IN THIS PROJECT
+====================================
+
+
+6. React COMPONENTS
+-------------------
+
+A component is a reusable piece of the user interface.
+
+Example:
+
+    function Home() {
+      return (
+        <section>
+          <h1>Hi, I am Om Pawar.</h1>
+        </section>
+      )
+    }
+
+Home is a React component.
+
+Other components in the project include:
+
+    Navigation
+    Home
+    About
+    Projects
+    NotFound
+    App
+
+Each component is responsible for displaying one part of the website.
+
+
+7. The App COMPONENT
+--------------------
+
+App is the main component of the application.
+
+It contains:
+
+    The navigation bar
+    The router
+    The footer
+
+Example:
+
+    function App() {
+      return (
+        <div className="app">
+          <Navigation />
+
+          <main>
+            <Routes>
+              ...
+            </Routes>
+          </main>
+
+          <footer>
+            ...
+          </footer>
+        </div>
+      )
+    }
+
+The App component is rendered from src/main.jsx.
+
+
+8. JSX
+------
+
+JSX allows you to write HTML-like code inside JavaScript.
+
+Example:
+
+    <h1>Hi, I am Om Pawar.</h1>
+
+This looks like HTML, but it is written inside a JavaScript file.
+React converts JSX into JavaScript.
+
+
+9. COMPONENTS INSIDE COMPONENTS
+-------------------------------
+
+The App component uses the Navigation component:
+
+    <Navigation />
+
+This is similar to using an HTML element, but the first letter is uppercase
+because Navigation is a React component.
+
+React component names should start with an uppercase letter:
+
+    <Navigation />
+    <Home />
+    <About />
+
+Lowercase names are treated as regular HTML elements.
+
+
+10. React Router LINK
+---------------------
+
+The Link component is used for internal navigation:
+
+    <Link to="/projects">
+      View my projects
+    </Link>
+
+When the user clicks this link, React changes the page without fully
+refreshing the browser.
+
+For internal React pages, use Link:
+
+    <Link to="/about">About</Link>
+
+A normal HTML link looks like this:
+
+    <a href="/about">About</a>
+
+
+11. NavLink
+-----------
+
+NavLink works like Link, but it can identify the active page.
+
+Example:
+
+    <NavLink to="/about">About</NavLink>
+
+When the user is currently on /about, React Router adds the active class.
+
+The CSS styles the active navigation link:
+
+    .nav-links a.active {
+      color: #2563eb;
+    }
+
+That is why the current page link appears blue.
+
+
+12. EXTERNAL LINKS
+------------------
+
+For websites outside the React app, use a normal HTML anchor:
+
+    <a
+      href="https://smritisathi90.netlify.app"
+      target="_blank"
+      rel="noreferrer"
+    >
+      Visit Smriti Saathi
+    </a>
+
+External links are used for:
+
+    Smriti Saathi
+    Portgary
+    Email
+    Social media links
+
+target="_blank" opens the link in a new tab.
+
+rel="noreferrer" is a security and privacy improvement when opening a new
+tab.
+
+
+13. JAVASCRIPT ARRAYS
+---------------------
+
+The skills are stored in an array:
+
+    const skills = [
+      'React',
+      'JavaScript',
+      'Python',
+      'Flutter',
+      'Node.js',
+      'MongoDB',
+    ]
+
+An array stores multiple related values in one place.
+
+
+14. The map() METHOD
+--------------------
+
+This code displays every skill:
+
+    <div className="skill-list">
+      {skills.map((skill) => (
+        <span key={skill}>{skill}</span>
+      ))}
+    </div>
+
+map() goes through each item in the skills array.
+
+For example, it displays:
+
+    React
+    JavaScript
+    Python
+    Flutter
+    Node.js
+    MongoDB
+
+
+15. The key PROP
+----------------
+
+React requires a unique key when rendering a list:
+
+    {skills.map((skill) => (
+      <span key={skill}>{skill}</span>
+    ))}
+
+The key helps React identify each item.
+
+In this project, every skill name is unique, so the skill itself is used as
+the key.
+
+
+16. JSX EXPRESSIONS
+-------------------
+
+Curly braces allow JavaScript inside JSX:
+
+    {skills.map((skill) => (
+      <span key={skill}>{skill}</span>
+    ))}
+
+The following are JavaScript expressions:
+
+    {skill}
+    {skills.map(...)}
+
+You can use variables, calculations, functions, and conditions inside
+curly braces.
+
+
+17. REUSABLE NAVIGATION COMPONENT
+---------------------------------
+
+The navigation is placed in its own component:
+
+    function Navigation() {
+      return (
+        <nav className="navigation">
+          ...
+        </nav>
+      )
+    }
+
+The navigation appears on every page.
+
+Instead of writing it separately in Home, About, and Projects, it is written
+once and used here:
+
+    <Navigation />
+
+This follows an important React idea:
+
+    Write a component once and reuse it wherever needed.
+
+
+18. FRAGMENT SYNTAX
+-------------------
+
+The Home component returns several sections:
+
+    return (
+      <>
+        <section className="hero">
+          ...
+        </section>
+
+        <section className="simple-section">
+          ...
+        </section>
+      </>
+    )
+
+The empty tags <> and </> are called a React Fragment.
+
+A React component must return one parent element. A Fragment groups multiple
+elements without adding an unnecessary div to the HTML.
+
+
+19. className
+------------
+
+React uses className instead of class:
+
+    <section className="hero">
+
+The related CSS is in src/index.css:
+
+    .hero {
+      padding: 100px 0 80px;
+    }
+
+className connects JSX elements to CSS styles.
+
+
+20. RESPONSIVE CSS
+------------------
+
+The project includes a media query:
+
+    @media (max-width: 700px) {
+      .cards,
+      .project-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+This means:
+
+    When the screen is smaller than 700 pixels, show the cards in one column.
+
+On a large screen:
+
+    Card 1 | Card 2 | Card 3
+
+On a small screen:
+
+    Card 1
+    Card 2
+    Card 3
+
+This makes the portfolio work on mobile phones.
+
+
+21. WHAT IS NOT USED YET
+------------------------
+
+This project does not currently use:
+
+    useState
+    useEffect
+    Form handling
+    API calls
+    Context
+    Custom hooks
+    Authentication
+    Database connections
+
+That is intentional. The portfolio is currently a simple static React
+website, which makes it easier to understand.
+
+
+SUMMARY
+=======
+
+The main concepts used in this portfolio are:
+
+    1. Components
+    2. JSX
+    3. React Router
+    4. BrowserRouter
+    5. Routes
+    6. Route
+    7. Link
+    8. NavLink
+    9. Arrays
+    10. map()
+    11. key
+    12. Reusable components
+    13. JSX expressions
+    14. Responsive CSS

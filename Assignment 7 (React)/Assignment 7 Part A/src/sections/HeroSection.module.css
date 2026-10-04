@@ -1,0 +1,181 @@
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  z-index: 1;
+}
+
+/* ── Metadata corners ── */
+.topLeft, .topRight {
+  position: absolute;
+  top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  z-index: 20;
+}
+.topLeft { left: 2.5rem; }
+.topRight { right: 2.5rem; align-items: flex-end; }
+
+.metaLabel {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(240, 240, 240, 0.55);
+}
+
+/* ── Floating artwork image ── */
+.heroImage {
+  position: absolute;
+  right: 10vw;
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(200px, 22vw, 380px);
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  z-index: 5;
+  transition: transform 0.1s linear;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.06);
+}
+.heroImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(80%) contrast(1.1);
+}
+.imageTag {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.imageTag span {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(240,240,240,0.7);
+}
+.imageTag span:first-child {
+  font-size: 0.55rem;
+  color: var(--color-accent-red);
+}
+
+/* ── Title stack ── */
+.titleStack {
+  position: absolute;
+  left: 4vw;
+  bottom: 8vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 10;
+  pointer-events: none;
+}
+.titleLine {
+  overflow: hidden;
+  display: flex;
+  align-items: baseline;
+  gap: 1.5vw;
+}
+.titleSolid {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 16vw, 18rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.85;
+  color: #f0f0f0;
+  letter-spacing: -0.04em;
+}
+.titleOutline {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 16vw, 18rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.85;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(240,240,240,0.9);
+  letter-spacing: -0.04em;
+}
+.titleSmall {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 4rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-accent-red);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.4em;
+}
+
+/* ── Year stamp ── */
+.yearBlock {
+  position: absolute;
+  left: 4vw;
+  top: 2.5rem;
+  z-index: 15;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: rgba(240,240,240,0.35);
+  letter-spacing: 0.1em;
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  transition: transform 0.1s linear;
+}
+
+/* ── Scroll indicator ── */
+.scrollIndicator {
+  position: absolute;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 20;
+}
+.scrollLine {
+  width: 60px;
+  height: 1px;
+  background: rgba(240,240,240,0.35);
+  position: relative;
+  overflow: hidden;
+}
+.scrollLine::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: var(--color-accent-red);
+  animation: scrollAnim 1.8s ease-in-out infinite;
+}
+@keyframes scrollAnim {
+  0%   { left: -100%; }
+  100% { left: 100%; }
+}
+.scrollIndicator span {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(240,240,240,0.4);
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .heroImage {
+    right: 5vw;
+    top: 10vh;
+    width: 45vw;
+    transform: none;
+  }
+  .titleStack {
+    bottom: 12vh;
+  }
+}
