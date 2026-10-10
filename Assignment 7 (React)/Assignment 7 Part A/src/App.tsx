@@ -1,39 +1,38 @@
-import React, { useState } from 'react';
-import { useLenis } from './hooks/useLenis';
-import Preloader from './components/Preloader/Preloader';
-import CustomCursor from './components/CustomCursor/CustomCursor';
-import Navigation from './components/Navigation/Navigation';
-import WebGLBackground from './components/WebGLBackground/WebGLBackground';
-import HeroSection from './sections/HeroSection';
-import EditorialSection from './sections/EditorialSection';
-import HorizontalGallery from './sections/HorizontalGallery';
-import Marquee from './components/Marquee/Marquee';
-import KineticText from './components/KineticText/KineticText';
-import FooterSection from './sections/FooterSection';
+import { useState } from 'react';
+import './App.css';
 
 function App() {
-  useLenis();
-  const [loading, setLoading] = useState(true);
+  // Counter state using useState
+  const [count, setCount] = useState(0);
+
+  // Input state using useState
+  const [text, setText] = useState('');
 
   return (
-    <>
-      <WebGLBackground />
-      <div className="noise-overlay" />
-      <CustomCursor />
-      <Navigation />
-      <Preloader onComplete={() => setLoading(false)} />
-      <main style={{ visibility: loading ? 'hidden' : 'visible' }}>
-        <HeroSection />
-        <EditorialSection />
-        <KineticText text="ICON — POP —" speed={1.2} direction="left" />
-        <KineticText text="CULTURE" speed={1.5} direction="right" outlined />
-        <HorizontalGallery />
-        <Marquee items={['Pop Art', 'Mass Media', 'Culture', 'Icon', 'New York', 'Warhol']} speed={1} />
-        <KineticText text="1962 — FOREVER —" speed={1} direction="left" color="rgba(204,34,0,0.6)" />
-        <Marquee items={['Exhibition', 'Archive', 'Silkscreen', 'Polymer', 'Canvas', 'Portrait']} speed={0.7} inverted />
-        <FooterSection />
-      </main>
-    </>
+    <div className="container">
+      <h1>React Counter & Input</h1>
+
+      {/* Counter Section */}
+      <div className="box">
+        <h2>Counter</h2>
+        <div className="counter-num">{count}</div>
+        <button onClick={() => setCount(count + 1)}>Increment</button>
+        <button onClick={() => setCount(count - 1)}>Decrement</button>
+        <button onClick={() => setCount(0)}>Reset</button>
+      </div>
+
+      {/* Input and Output Section */}
+      <div className="box">
+        <h2>Data Input</h2>
+        <input
+          type="text"
+          placeholder="Enter some text..."
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <p className="output-text">Output: {text}</p>
+      </div>
+    </div>
   );
 }
 
